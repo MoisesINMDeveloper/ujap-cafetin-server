@@ -1,7 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
-
+import adminRoutes from './routes/admin.route'
 dotenv.config()
 
 const app = express()
@@ -19,11 +19,13 @@ const corsOptions ={
     origin: urlFront,
     exposedHeaders: ['token']
 };
-
 //Habilitar CORS//
 app.use(cors(corsOptions))
-
 //Usar JSON//
 app.use(express.json())
 
+//----Rutas----//
+// app.use('/products','Aqui va la ruta sin comillas')
+// app.use('/categories','Aqui va la ruta sin comillas')
+app.use('/admin', adminRoutes)
 export default app;
