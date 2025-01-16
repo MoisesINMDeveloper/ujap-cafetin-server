@@ -5,9 +5,11 @@ export const getAdminByUsername = async (username: string) => {
     const admin = await userAdminPrisma.findUnique({
       where: { username },
     });
+
     if (admin) {
       return { status: 200, admin };
     }
+
     return { status: 404, message: 'Admin not found.' };
   } catch (error) {
     return { status: 500, message: 'Internal server error.' };

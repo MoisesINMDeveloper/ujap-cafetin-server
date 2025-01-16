@@ -2,6 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import adminRoutes from './routes/admin/admin.routes'
+
 dotenv.config()
 
 const app = express()

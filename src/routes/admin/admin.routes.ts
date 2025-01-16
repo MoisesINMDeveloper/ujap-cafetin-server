@@ -1,15 +1,18 @@
 import express from 'express';
+import { createAdminController, getAdminByUsernameController, verifyAdminPasswordController } from './controllers';
 import { authenticatedReq } from '../../middleware/auth.middleware';
-import { createAdminController, getAdminByUsernameController, loginAdminController, verifyAdminPasswordController } from './controllers';
 
 const router = express.Router();
 
-// Autenticarse como administrador
-router.post('/login', loginAdminController);
+// Ruta pública para autenticarse como administrador (sin middleware)
+router.post('/login', verifyAdminPasswordController);
 
-// Proteger las rutas con el middleware de autenticación
-router.post('/create', authenticatedReq, createAdminController);
-router.get('/exists/:username', authenticatedReq, getAdminByUsernameController);
-router.post('/verify', authenticatedReq, verifyAdminPasswordController);
+// Aplica el middleware para proteger las siguientes rutas
+router.use(authenticatedReq);
+
+// Rutas protegidas por el middleware de autenticación
+router.post('/create', createAdminController);
+router.get('/exists/:username', getAdminByUsernameController);
+router.post('/verify', verifyAdminPasswordController);
 
 export default router;

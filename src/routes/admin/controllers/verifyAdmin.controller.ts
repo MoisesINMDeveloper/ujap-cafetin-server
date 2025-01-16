@@ -5,5 +5,13 @@ export const verifyAdminPasswordController = async (req: Request, res: Response)
   const { username, password } = req.body;
   const result = await verifyAdminPassword(username, password);
 
-  res.status(result.status).json(result.admin ? { valid: true, admin: result.admin } : { valid: false, error: result.message });
+  if (result.status === 200) {
+    res.status(result.status).json({
+      valid: true,
+      admin: result.admin,
+      token: result.token
+    });
+  } else {
+    res.status(result.status).json({ valid: false, error: result.message });
+  }
 };
