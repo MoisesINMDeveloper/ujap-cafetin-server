@@ -2,6 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import adminRoutes from './routes/admin/admin.routes'
+import categoryRoutes from './routes/categories/category.routes'
 
 dotenv.config()
 
@@ -29,4 +30,5 @@ app.use(express.json())
 // app.use('/products','Aqui va la ruta sin comillas')
 // app.use('/categories','Aqui va la ruta sin comillas')
 app.use('/admin', adminRoutes)
+app.use('/category', categoryRoutes)
 export default app;
