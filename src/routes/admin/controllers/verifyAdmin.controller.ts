@@ -1,7 +1,10 @@
 import { Request, Response } from 'express';
 import { verifyAdminPassword } from '../services/verifyAdmin.service';
 
-export const verifyAdminPasswordController = async (req: Request, res: Response): Promise<void> => {
+export const verifyAdminPasswordController = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   const { username, password } = req.body;
   const result = await verifyAdminPassword(username, password);
 
@@ -9,7 +12,7 @@ export const verifyAdminPasswordController = async (req: Request, res: Response)
     res.status(result.status).json({
       valid: true,
       admin: result.admin,
-      token: result.token
+      token: result.token,
     });
   } else {
     res.status(result.status).json({ valid: false, error: result.message });

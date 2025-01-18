@@ -1,34 +1,34 @@
-import express from 'express'
-import dotenv from 'dotenv'
-import cors from 'cors'
-import adminRoutes from './routes/admin/admin.routes'
-import categoryRoutes from './routes/categories/category.routes'
+import express from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import adminRoutes from './routes/admin/admin.routes';
+import categoryRoutes from './routes/categories/category.routes';
+import productRoutes from './routes/products/product.routes';
 
-dotenv.config()
+dotenv.config();
 
-const app = express()
+const app = express();
 
 //Configuracion de CORS//
 let urlFront;
 
-if(process.env.ENV === 'DEV'){
-    urlFront = 'http://localhost:3000';
+if (process.env.ENV === 'DEV') {
+  urlFront = 'http://localhost:3000';
 } else {
-    urlFront = process.env.URL_FRONT;
+  urlFront = process.env.URL_FRONT;
 }
 
-const corsOptions ={
-    origin: urlFront,
-    exposedHeaders: ['token']
+const corsOptions = {
+  origin: urlFront,
+  exposedHeaders: ['token'],
 };
 //Habilitar CORS//
-app.use(cors(corsOptions))
+app.use(cors(corsOptions));
 //Usar JSON//
-app.use(express.json())
+app.use(express.json());
 
 //----Rutas----//
-// app.use('/products','Aqui va la ruta sin comillas')
-// app.use('/categories','Aqui va la ruta sin comillas')
-app.use('/admin', adminRoutes)
-app.use('/category', categoryRoutes)
+app.use('/products', productRoutes);
+app.use('/admin', adminRoutes);
+app.use('/categories', categoryRoutes);
 export default app;

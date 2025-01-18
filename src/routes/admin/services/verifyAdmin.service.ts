@@ -4,14 +4,21 @@ import jwt from 'jsonwebtoken';
 
 const secretKey = process.env.JWT_SECRET_KEY || 'your-secret-key';
 
-export const verifyAdminPassword = async (username: string, password: string) => {
+export const verifyAdminPassword = async (
+  username: string,
+  password: string
+) => {
   try {
     const result = await getAdminByUsername(username);
     const admin = result.admin;
 
-    if (admin && await comparePassword(password, admin.password)) {
+    if (admin && (await comparePassword(password, admin.password))) {
       // Generar el token al validar las credenciales
-      const token = jwt.sign({ id: admin.id, username: admin.username }, secretKey, { expiresIn: '1h' });
+      const token = jwt.sign(
+        { id: admin.id, username: admin.username },
+        secretKey,
+        { expiresIn: '1h' }
+      );
       return { status: 200, admin, token };
     }
 

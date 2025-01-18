@@ -1,7 +1,6 @@
 import userAdminPrisma from '../../../models/userAdmin.prisma';
 import { hashPassword } from '../../../utils/bcrypt';
 
-
 export const createAdmin = async (username: string, password: string) => {
   try {
     // Verificar si ya existe algún administrador
@@ -12,7 +11,7 @@ export const createAdmin = async (username: string, password: string) => {
     }
 
     // Verifica si el username ya existe
-    const existingAdmin = await userAdminPrisma.findUnique({ 
+    const existingAdmin = await userAdminPrisma.findUnique({
       where: { username },
     });
 
