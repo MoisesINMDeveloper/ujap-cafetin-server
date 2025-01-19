@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import product from '../../../models/product.prisma';
-export const deleteProductcontroller = async (req: Request, res: Response) => {
+export const deleteProductController = async (req: Request, res: Response) => {
   try {
     const productId = req.params.id;
     const deletedProduct = await product.delete({
@@ -9,10 +9,11 @@ export const deleteProductcontroller = async (req: Request, res: Response) => {
       },
     });
     if (!deletedProduct) {
-      return res.status(404).json({ message: 'Product not found' });
+      res.status(404).json({ message: 'Product not found' });
+      return;
     }
 
-    res.status(200).json(deletedProduct);
+    res.status(200).json('Product deleted successfully');
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }

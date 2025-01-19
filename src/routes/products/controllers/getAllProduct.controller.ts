@@ -1,7 +1,10 @@
 import { Request, Response } from 'express';
 import { getAllProduct } from '../services/getAllProduct.service';
 
-export const getAllProductController = async (req: Request, res: Response) => {
+export const getAllProductController = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     const products = await getAllProduct();
     res.status(200).json(products);

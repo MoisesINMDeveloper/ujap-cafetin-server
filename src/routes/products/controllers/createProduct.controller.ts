@@ -1,7 +1,10 @@
 import { Request, Response } from 'express';
 import product from '../../../models/product.prisma';
 
-export const createProductController = async (req: Request, res: Response) => {
+export const createProductController = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   const { title, price, images, description, categoryId } = req.body;
   try {
     const newProduct = await product.create({
