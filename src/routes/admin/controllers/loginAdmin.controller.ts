@@ -19,7 +19,7 @@ export const loginAdminController = async (
     const token = jwt.sign(
       { id: result.admin.id, username: result.admin.username },
       secretKey,
-      { expiresIn: '1h' } // El token expira en una hora
+      { expiresIn: '8h' }
     );
     res.status(200).json({ token });
   } else {

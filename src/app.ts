@@ -14,7 +14,7 @@ const app = express();
 let urlFront;
 
 if (process.env.ENV === 'DEV') {
-  urlFront = 'http://localhost:3000';
+  urlFront = 'http://localhost:5173';
 } else {
   urlFront = process.env.URL_FRONT;
 }
