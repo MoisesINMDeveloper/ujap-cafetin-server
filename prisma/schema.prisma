@@ -35,7 +35,7 @@ model Paydates {
   code        String
   cedula      String
   phone       String
-
+}
 
 model UserAdmin {
   id          Int         @id @default(autoincrement())
