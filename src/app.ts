@@ -5,6 +5,7 @@ import adminRoutes from './routes/admin/admin.routes';
 import categoryRoutes from './routes/categories/category.routes';
 import productRoutes from './routes/products/product.routes';
 import paydateRoutes from './routes/paydates/paydate.routes';
+import deliveryRoutes from './routes/deliveryOptions/delivery.routes';
 
 dotenv.config();
 
@@ -33,4 +34,5 @@ app.use('/products', productRoutes);
 app.use('/admin', adminRoutes);
 app.use('/categories', categoryRoutes);
 app.use('/paydates', paydateRoutes);
+app.use('/delivery', deliveryRoutes);
 export default app;

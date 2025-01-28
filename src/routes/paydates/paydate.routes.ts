@@ -1,8 +1,11 @@
 import { Router } from "express";
-import { createPaydateController } from "./controllers/createPaydate.controller";
-
+import { createPaydateController, deletePaydateController, getPaydateController, putPaydateController } from "./controllers";
+import { authenticatedReq } from "../../middleware/auth.middleware";
 
 const router = Router();
 
-router.post('/', createPaydateController);
+router.post('/', authenticatedReq, createPaydateController);
+router.get('/', getPaydateController);
+router.put('/:id',authenticatedReq, putPaydateController, );
+router.delete('/:id',authenticatedReq,deletePaydateController);
 export default router;
