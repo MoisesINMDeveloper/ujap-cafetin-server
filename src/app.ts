@@ -11,29 +11,26 @@ dotenv.config();
 
 const app = express();
 
-//Configuracion de CORS//
-let urlFront;
-
-if (process.env.ENV === 'DEV') {
-  urlFront = 'http://localhost:5173';
-} else {
-  urlFront = process.env.URL_FRONT;
-}
-
+// 🔹 Permitir acceso desde cualquier origen
 const corsOptions = {
-  origin: urlFront,
-  exposedHeaders: ['token'],
+  origin: '*', // 👈 Permite cualquier dominio
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
+  allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
+  exposedHeaders: ['token'], // Headers que el frontend puede leer
 };
-//Habilitar CORS//
-app.use(cors(corsOptions));
-//Usar JSON//
-app.use(express.json({limit: '50mb'}));
-app.use(express.urlencoded({limit:'50mb',extended:true}))
 
-//----Rutas----//
+// Habilitar CORS con opciones definidas
+app.use(cors(corsOptions));
+
+// Permitir JSON en las solicitudes
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
+
+// ---- Rutas ---- //
 app.use('/products', productRoutes);
 app.use('/admin', adminRoutes);
 app.use('/categories', categoryRoutes);
 app.use('/paydates', paydateRoutes);
 app.use('/delivery', deliveryRoutes);
+
 export default app;
