@@ -9,7 +9,7 @@ declare global {
   }
 }
 
-const secretKey = process.env.JWT_SECRET_KEY || 'my_secret_key_admin';
+const secretKey = process.env.JWT_SECRET_KEY || 'your-secret-key';
 
 // Middleware de autenticación que verifica el token
 export const authenticatedReq = (
